@@ -453,13 +453,13 @@ body.is-loading .hero .hero-scroll {
 }
 
 .brand-badge-logo {
-  height: 42px;
+  height: 200px;
   width: auto;
   display: block;
-  /* the source PNG (wordmark-only crop) has transparent padding baked
-     in around the letters, so pull it up/left by that much to sit
-     truly flush instead of visibly inset */
-  margin: -4px 0 0 -60px;
+  /* the source PNG (symbol-only mark, square canvas) has transparent
+     padding baked in around it, so pull it up/left by that much to
+     sit truly flush instead of visibly inset */
+  margin: -70px 0 0 -20px;
 }
 
 .footer-slogan {
@@ -1943,8 +1943,8 @@ html.pin-mode .svc-pin-stage > .wrap {
 
 @media (max-width: 860px) {
   .brand-badge-logo {
-    height: 32px;
-    margin: -3px 0 0 -18px;
+    height: 60px;
+    margin: -21px 0 0 -6px;
   }
 
   .hero {
@@ -1973,14 +1973,23 @@ html.pin-mode .svc-pin-stage > .wrap {
 }
 
 @media (max-width: 620px) {
+  /* script.js fades .brand-badge in/out by scroll progress through the
+     pinned hero — math that goes wrong once the hero stops actually
+     pinning at narrow widths, so pin it visible here regardless of
+     whatever inline opacity/transform it computed. */
+  .hero .brand-badge {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .brand-badge {
-    top: 24px;
-    left: 8px;
+    top: 0;
+    left: 0;
   }
 
   .brand-badge-logo {
-    height: 24px;
-    margin: -2px 0 0 -13px;
+    height: 110px;
+    margin: -20px 0 0 0;
   }
 
   .hero {
@@ -2026,8 +2035,8 @@ html.pin-mode .svc-pin-stage > .wrap {
   }
 
   .brand-badge {
-    top: 22px;
-    left: -20px;
+    top: 0;
+    left: 0;
   }
 
   .hero .brand-badge-text {
