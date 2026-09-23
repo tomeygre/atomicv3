@@ -414,8 +414,8 @@ body.is-loading {
 /* ---------- Brand badge, top-left ---------- */
 .brand-badge {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 24px;
+  left: 24px;
   z-index: 2;
   display: inline-flex;
   text-decoration: none;
@@ -453,22 +453,26 @@ body.is-loading .hero .hero-scroll {
 }
 
 .brand-badge-logo {
-  height: 300px;
+  height: 42px;
   width: auto;
   display: block;
-  /* the source PNG has ~5-7% transparent padding baked in around the
-     mark, so pull it up/left by that much to sit truly flush in the
-     corner instead of visibly inset */
-  margin: -85px 0 0 -35px;
+  /* the source PNG (wordmark-only crop) has transparent padding baked
+     in around the letters, so pull it up/left by that much to sit
+     truly flush instead of visibly inset */
+  margin: -4px 0 0 -60px;
+}
+
+.footer-slogan {
+  font-family: "The Seasons", var(--font-body);
+  font-style: italic;
 }
 
 .brand-badge-text {
-  font-family: var(--font-display);
+  font-family: "The Seasons", var(--font-body);
   font-weight: 700;
   font-size: 0.72rem;
   line-height: 1.2;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  letter-spacing: normal;
   color: var(--text-primary);
   white-space: nowrap;
 }
@@ -480,7 +484,7 @@ body.is-loading .hero .hero-scroll {
    on the shared rule above. */
 .hero .brand-badge-text {
   font-size: 2rem;
-  color: #f6eedf;
+  color: #8a5a3c;
 }
 
 /* ---------- Nav (embedded in hero) ----------
@@ -993,8 +997,7 @@ body.is-loading .hero .hero-scroll {
 }
 
 .hero-title {
-  /* No font-family/weight override here any more — falls through to the
-     h1 base rule's var(--font-heading), now PP Neue Montreal. */
+  font-family: "The Seasons", var(--font-body);
   font-size: clamp(2rem, min(6vw, 9vh), 4.6rem);
   color: #f6eedf;
   letter-spacing: -0.02em;
@@ -1939,6 +1942,11 @@ html.pin-mode .svc-pin-stage > .wrap {
 }
 
 @media (max-width: 860px) {
+  .brand-badge-logo {
+    height: 32px;
+    margin: -3px 0 0 -18px;
+  }
+
   .hero {
     padding: 120px 0 100px;
     /* Full-screen hero so the slogan can sit at the bottom, right above
@@ -1965,6 +1973,16 @@ html.pin-mode .svc-pin-stage > .wrap {
 }
 
 @media (max-width: 620px) {
+  .brand-badge {
+    top: 24px;
+    left: 8px;
+  }
+
+  .brand-badge-logo {
+    height: 24px;
+    margin: -2px 0 0 -13px;
+  }
+
   .hero {
     flex-direction: column;
     align-items: center;
@@ -2008,8 +2026,8 @@ html.pin-mode .svc-pin-stage > .wrap {
   }
 
   .brand-badge {
-    top: 14px;
-    left: 14px;
+    top: 22px;
+    left: -20px;
   }
 
   .hero .brand-badge-text {
