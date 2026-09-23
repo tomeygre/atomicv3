@@ -120,8 +120,8 @@
      Hazelnut 50% (human/approachable) as the one warm accent, Brown 25%
      (heritage/stability), Black 20% (confidence/performance) as the
      dark base, Cream 5% (butter/warmth) as text and highlights */
-  --bg-deep: #1e140c;    /* Espresso (Black, warmed toward Brown) */
-  --bg-base: #1e140c;
+  --bg-deep: #3f1f0f;    /* Espresso (Black, warmed toward Brown) */
+  --bg-base: #3f1f0f;
   --bg-raised: #4a331f;  /* Brown */
   --bg-raised-2: #5c4128; /* lighter Brown, for a second raised layer */
   --border-soft: rgba(246, 238, 223, 0.09);
@@ -261,7 +261,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: #3f1f0f;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.6s ease, visibility 0s linear 0s;
@@ -289,6 +289,7 @@ body.is-loading {
 }
 
 .loader-atomic {
+  display: none;
   font-size: clamp(2.2rem, 7vw, 5rem);
   letter-spacing: 0.02em;
   color: var(--text-primary);
@@ -297,7 +298,7 @@ body.is-loading {
 }
 
 .loader-cycle {
-  display: inline-block;
+  display: none;
   min-height: 1.15em;
   font-size: clamp(1.5rem, 4.6vw, 3.2rem);
   letter-spacing: 0.02em;
@@ -339,7 +340,7 @@ body.is-loading {
   width: 0%;
   background: linear-gradient(90deg, var(--amber), var(--amber-bright));
   border-radius: var(--radius-pill);
-  transition: width 0.12s linear;
+  transition: width 2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -462,9 +463,33 @@ body.is-loading .hero .hero-scroll {
   margin: -70px 0 0 -20px;
 }
 
+/* Wordmark-style crop (wide strip, tightly cropped already) instead of
+   the square symbol-only mark — different aspect ratio, so its own size
+   and (much smaller) padding compensation. */
+.brand-badge-logo--wide {
+  height: 44px;
+  margin: -4px 0 0 -4px;
+}
+
+.loader-mark {
+  height: min(260px, 48vw);
+  width: auto;
+  /* proportional to the clamped height above (not a fixed px), so the
+     compensation stays correct at every viewport instead of overlapping
+     the wordmark on narrow screens where 48vw shrinks it well below 260px */
+  margin-bottom: calc(min(260px, 48vw) * -0.26);
+}
+
+.loader-wordmark {
+  height: min(48px, 9vw);
+  width: auto;
+  margin-top: calc(min(48px, 9vw) * -0.1);
+}
+
 .footer-slogan {
   font-family: "The Seasons", var(--font-body);
   font-style: italic;
+  color: #ebe7e4;
 }
 
 .brand-badge-text {
@@ -667,7 +692,7 @@ body.is-loading .hero .hero-scroll {
   transform: translate(-50%, -8px);
   width: min(620px, 90vw);
   z-index: 5;
-  background: var(--bg-raised);
+  background: #3f1f0f;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-soft);
@@ -999,7 +1024,7 @@ body.is-loading .hero .hero-scroll {
 .hero-title {
   font-family: "The Seasons", var(--font-body);
   font-size: clamp(2rem, min(6vw, 9vh), 4.6rem);
-  color: #f6eedf;
+  color: #ebe7e4;
   letter-spacing: -0.02em;
   display: flex;
   flex-direction: column;
@@ -1023,9 +1048,7 @@ body.is-loading .hero .hero-scroll {
 /* Still gets its glow treatment, just in white rather than the accent
    color — "all the letters in the hero should be white" per request. */
 .glow-text {
-  color: #f6eedf;
-  text-shadow: 0 0 14px rgba(246, 238, 223, 0.5);
-  animation: glowPulse 3.2s ease-in-out infinite;
+  color: #ebe7e4;
 }
 
 @keyframes glowPulse {
@@ -1520,6 +1543,14 @@ html.pin-mode #top {
   color: var(--text-primary);
 }
 
+/* Headings in these light sections were reading as near-black (Espresso,
+   --text-primary) — warm them to Brown instead, leaving body copy as-is. */
+#services h1, #services h2, #services h3, #services h4,
+#about h1, #about h2, #about h3, #about h4,
+#contact h1, #contact h2, #contact h3, #contact h4 {
+  color: #3f1f0f;
+}
+
 .section-head {
   max-width: 640px;
   margin: 0 auto 44px;
@@ -1558,9 +1589,9 @@ html.pin-mode #top {
   margin-top: clamp(48px, 7vw, 80px);
   text-align: center;
   padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 44px);
-  background: linear-gradient(150deg, #dcb98c 0%, #a9814f 130%);
+  background: #3f1f0f;
   border-radius: 8px 48px 8px 8px;
-  color: var(--accent-ink);
+  color: #ebe7e4;
 }
 
 .results-kicker {
@@ -1573,7 +1604,7 @@ html.pin-mode #top {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-ink);
+  color: #ebe7e4;
   opacity: 0.72;
   margin: 0 0 clamp(28px, 4vw, 40px);
 }
@@ -1582,7 +1613,7 @@ html.pin-mode #top {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--accent-ink);
+  background: #ebe7e4;
   flex: none;
 }
 
@@ -1594,28 +1625,28 @@ html.pin-mode #top {
 
 .result-stat {
   padding: clamp(18px, 3vw, 28px) 12px;
-  background: rgba(11, 11, 15, 0.08);
+  background: rgba(235, 231, 228, 0.08);
   border-radius: 4px 22px 4px 4px;
   transition: transform 0.25s ease, background 0.25s ease;
 }
 
 .result-stat:hover {
   transform: translateY(-4px);
-  background: rgba(11, 11, 15, 0.14);
+  background: rgba(235, 231, 228, 0.14);
 }
 
 .result-num {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: clamp(1.4rem, 4vw, 2.4rem);
-  color: var(--accent-ink);
+  color: #ebe7e4;
   margin: 0 0 6px;
   letter-spacing: -0.01em;
 }
 
 .result-label {
   margin: 0;
-  color: rgba(11, 11, 15, 0.68);
+  color: rgba(235, 231, 228, 0.68);
   font-size: 0.82rem;
   line-height: 1.5;
 }
@@ -1947,6 +1978,11 @@ html.pin-mode .svc-pin-stage > .wrap {
     margin: -21px 0 0 -6px;
   }
 
+  .brand-badge-logo--wide {
+    height: 20px;
+    margin: -1px 0 0 -1px;
+  }
+
   .hero {
     padding: 120px 0 100px;
     /* Full-screen hero so the slogan can sit at the bottom, right above
@@ -1983,13 +2019,18 @@ html.pin-mode .svc-pin-stage > .wrap {
   }
 
   .brand-badge {
-    top: 0;
-    left: 0;
+    top: 14px;
+    left: 14px;
   }
 
   .brand-badge-logo {
     height: 110px;
     margin: -20px 0 0 0;
+  }
+
+  .brand-badge-logo--wide {
+    height: 26px;
+    margin: -2px 0 0 0;
   }
 
   .hero {
@@ -2035,8 +2076,8 @@ html.pin-mode .svc-pin-stage > .wrap {
   }
 
   .brand-badge {
-    top: 0;
-    left: 0;
+    top: 14px;
+    left: 14px;
   }
 
   .hero .brand-badge-text {
@@ -2227,7 +2268,7 @@ html.pin-mode .svc-pin-stage > .wrap {
 }
 
 .cs-item.is-logo {
-  background: #fff;
+  background: #ebe7e4;
 }
 
 .cs-item.is-logo img {

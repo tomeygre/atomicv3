@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="el">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,8 +42,10 @@
 
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader-inner">
-    <span class="loader-atomic">Atomic</span>
-    <span class="loader-cycle" id="loaderCycle">Energy</span>
+    <img class="loader-mark" src="assets/mark.png" alt="">
+    <img class="loader-wordmark" src="assets/showcase-caption.png" alt="Atomic Strategy">
+    <span class="loader-atomic" hidden>Atomic</span>
+    <span class="loader-cycle" id="loaderCycle" hidden>Energy</span>
     <div class="loader-bar"><span class="loader-bar-fill" id="loaderBarFill"></span></div>
   </div>
 </div>
@@ -102,7 +104,7 @@
 </header>
 
 <div class="hero-video-frame" id="heroVideoFrame">
-  <video id="heroVideo" class="hero-video" src="assets/videos/hero.mp4" muted loop playsinline autoplay aria-hidden="true"></video>
+  <video id="heroVideo" class="hero-video" src="assets/videos/hero.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-video-overlay" aria-hidden="true"></div>
   <button type="button" class="hero-video-play" id="heroVideoPlay" aria-label="Αναπαραγωγή βίντεο">
     <span class="hero-video-play-icon" aria-hidden="true">▶</span>
@@ -125,7 +127,7 @@
     <div class="hero-glow" aria-hidden="true"></div>
 
     <a class="brand-badge" href="#top" aria-label="Atomic Strategy">
-      <img class="brand-badge-logo" src="assets/mark.png" alt="Atomic Strategy">
+      <img class="brand-badge-logo brand-badge-logo--wide" src="assets/showcase-caption.png" alt="Atomic Strategy">
     </a>
 
     <nav class="hero-nav" aria-label="Κύρια πλοήγηση">

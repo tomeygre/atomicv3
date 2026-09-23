@@ -24,11 +24,8 @@
       return;
     }
 
-    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var words = ["Energy", "Number", "Mass", "Habits", "Design", "Power", "Theory", "Model"];
     var FINAL_WORD = "Strategy";
-    var FLIP_MS = 70;
-    var TOTAL_STEPS = words.length + 1; // +1 for the final "Strategy" landing
+    var TOTAL_STEPS = 9; // kept in step with the old words-list length, for setProgress's math
 
     document.body.classList.add("is-loading");
 
@@ -49,36 +46,25 @@
       }, 550);
     }
 
-    if (reduceMotion) {
-      finish();
-      return;
-    }
+    // The word-cycling effect is retired (words stay hidden — only the mark
+    // shows now), so just animate the progress bar up and finish, instead of
+    // stepping through the old words list.
+    setProgress(TOTAL_STEPS);
+    window.setTimeout(finish, 2200);
 
-    var i = 0;
-    var delay = 65;
-    setProgress(1);
-
-    function tick() {
-      cycleEl.classList.add("is-flip");
-      window.setTimeout(function () {
-        i += 1;
-        if (i >= words.length) {
-          finish();
-          return;
-        }
-        cycleEl.textContent = words[i];
-        cycleEl.classList.remove("is-flip");
-        setProgress(i + 1);
-        delay += 5; // eases out — the last few words land a touch slower
-        window.setTimeout(tick, delay);
-      }, FLIP_MS);
-    }
-
-    window.setTimeout(tick, delay);
+    // Start the video a little before the bar's own 2s fill finishes,
+    // so it's already moving under the loader rather than only once
+    // everything else is done.
+    window.setTimeout(function () {
+      var heroVideo = document.getElementById("heroVideo");
+      if (heroVideo) {
+        heroVideo.play().catch(function () {});
+      }
+    }, 1700);
   })();
 
   var STORAGE_KEY = "as-lang";
-  var DEFAULT_LANG = "el";
+  var DEFAULT_LANG = "en";
 
   var translations = {
     el: {
@@ -273,9 +259,10 @@
   }
 
   function initLangSwitch() {
-    var stored = getStoredLang();
-    var initialLang = stored || DEFAULT_LANG;
-    applyLang(initialLang);
+    // The site is English-only now (no language-switch UI exists) — always
+    // apply DEFAULT_LANG, ignoring any language a browser may have stored
+    // from earlier testing, so a stale "el" in localStorage can't override it.
+    applyLang(DEFAULT_LANG);
 
     document.querySelectorAll("[data-lang-btn]").forEach(function (btn) {
       btn.addEventListener("click", function () {
